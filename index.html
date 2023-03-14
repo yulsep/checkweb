@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Check if course is free or not</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Check if course is free or not</h1>
+    <form id="url-form">
+      <label for="urls">Enter a list of up to 10 URLs:</label>
+      <input type="text" id="urls" placeholder="Enter URLs here..." />
+      <small>Please enter URLs follow by coma "," like this:</small>
+      <pre>
+https://example.com/course1,
+https://example.com/course2,
+https://example.com/course3
+		</pre
+      >
+      <input type="submit" value="Check prices" />
+    </form>
+    <div id="result-div">
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
