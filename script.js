@@ -32,41 +32,38 @@ function handleSubmit(event) {
  * @param {string[]} urls - The list of URLs to check prices for.
  */
 function checkPrices(urls) {
-	const results = [];
+    const results = [];
 
-	urls.forEach(url => {
-		let myHeaders = new Headers();
-		myHeaders.append("Content-Type", "application/json");
-	
-		let raw = JSON.stringify({
-		  "url": url,
-		});
-	
-		let requestOptions = {
-		  method: 'POST',
-		  headers: myHeaders,
-		  body: raw,
-		  redirect: 'follow'
-		};
-	
-		fetch('http://127.0.0.1:5000/prices/', requestOptions)
-		  .then(response => response.json())
-		  .then(data => results.push(`<p>${data.url}: ${data.price}</p>`))
-		  .catch(error => results.push(`<p>${url}: Error fetching price information (${error}).</p>`))
-		  .finally(() => {
-			if (results.length === urls.length) {
-			  displayResults(results);
-			}
-		  });
-	  });
-	}
+    urls.forEach(url => {
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                url: url
+            })
+        };
+
+        fetch('http://127.0.0.1:5000/course_price', requestOptions)
+            .then(response => response.json())
+            .then(data => results.push(`<p>${data.url}: ${data.price}</p>`))
+            .catch(error => results.push(`<p>${url}: Error al obtener información de precio (${error}).</p>`))
+            .finally(() => {
+                if (results.length === urls.length) {
+                    displayResults(results);
+                }
+            });
+    });
+}
+
 
 /**
  * Displays the results in the results <div>.
  * @param {string[]} results - The list of results to display.
  */
 function displayResults(results) {
-	const resultsDiv = document.querySelector('#results');
+	const resultsDiv = document.querySelector('#result-div');
 	resultsDiv.innerHTML = results.join('');
 }
 
