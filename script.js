@@ -45,7 +45,7 @@ function checkPrices(urls) {
             })
         };
 
-        fetch('http://127.0.0.1:5000/course_price', requestOptions)
+        fetch('https://ap-iprice-o17sn7tih-yulsep.vercel.app/course_price', requestOptions)
             .then(response => response.json())
             .then(data => results.push(`<p>${data.url}: ${data.price}</p>`))
             .catch(error => results.push(`<p>${url}: Error al obtener información de precio (${error}).</p>`))
